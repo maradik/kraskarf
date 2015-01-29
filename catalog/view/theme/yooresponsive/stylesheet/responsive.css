@@ -74,7 +74,7 @@ img{
 	}
 	#container{
 		width: 760px;
-		padding:10px;
+		padding:10px;		
 	}
 	#column-left{
 		display:none;
@@ -85,10 +85,15 @@ img{
 }
 
 /* Mobile Landscape Size to Tablet Portrait */
-@media only screen and (max-width: 768px) {
-	#container{
-		width:100%;
+@media only screen and (max-width: 780px) {
+	body {
+		background: #FFF;
 	}
+	#container{
+		width:auto;
+		margin-left: auto;
+		margin-right: auto;		
+	}	
 	#column-right{
 		display:none;
 	}
@@ -148,12 +153,17 @@ img{
 	*/
 }
 
-@media only screen and (max-width: 600px) {
-	#container{
-		min-width: 500px;
-	}	
+@media only screen and (max-width: 600px) {	
+	#header {
+		height: 200px;
+	}
+	#menu {
+		height: auto;	
+	}
 	#menu ul li a {
 		font-size: 90%;
+		margin-bottom: 0px;
+		padding: 4px 5px;
 	}
 	#header #logo{
 		left:5px;
@@ -169,8 +179,27 @@ img{
 		left: 5px;
 		top: 5px;
 	}
+	#header #cart {
+		left: 5px;
+		right: auto;
+		top: 120px;
+	}
 	#header #cart .heading{
+		float: left;
 		margin-right:0px;
+		padding-left: 0px;
+	}
+	#header #search{
+		top: 180px;
+		margin-right: auto;
+		left: 5px;
+		right: auto;
+	}	
+	#header #welcome {
+		left: 5px;
+		right: auto;
+		top: 100px;
+		text-align: left;
 	}
 	#header .links{
 		display:none;

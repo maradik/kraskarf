@@ -129,7 +129,7 @@ if ($categories) {
         }
         $normal_html .= "</li>";
     }
-    echo "<div id='menu'><ul class='normal-cat'>$normal_html</ul></div>";
+    echo "<div id='menu'><ul class='normal-cat'>$normal_html</ul><div class='clearfix'></div></div>";
     echo "<div class='response-cat'><div><img src='catalog/view/theme/yooresponsive/image/menu2.png'/></div><select onChange='location = this.value'><option></option><option value='$home'>Home</option>$response_html</select></div>";
 } 
 ?>
