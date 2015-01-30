@@ -4,7 +4,7 @@ html {
 	padding: 0;
 }
 body {
-	background:url('/image/data/background.jpg') center top no-repeat fixed;
+	background: url('/image/data/background.jpg') #000 center top no-repeat fixed;
 	color: #000000;
 	font-family: Arial, Helvetica, sans-serif;
 	margin: 0px;
@@ -141,7 +141,7 @@ label {
 }
 #header #cart {
 	position: absolute;
-	top: 15px;
+	top: 25px;
 	right: 10px;
 	z-index: 9;
 	min-width: 300px;
@@ -1681,4 +1681,7 @@ ul.box-filter > li ul {
 }
 .banner div img {
 	margin-bottom: 20px;
+}
+.clearfix {
+	clear: both;
 }
