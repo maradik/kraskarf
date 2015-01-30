@@ -84,6 +84,7 @@ label {
 #content {
 	min-height: 400px;
 	margin-bottom: 25px;
+	text-align: justify;
 }
 #column-left + #column-right + #content, #column-left + #content {
 	margin-left: 195px;
@@ -1684,4 +1685,7 @@ ul.box-filter > li ul {
 }
 .clearfix {
 	clear: both;
+}
+.main-welcome-content {
+	line-height: 1.6;
 }
