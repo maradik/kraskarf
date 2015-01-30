@@ -1,0 +1,6 @@
+config.php
+admin/config.php
+system/cache/*
+.project
+.htaccess*
+system/logs/*
