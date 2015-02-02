@@ -73,6 +73,10 @@ $('body').prepend('<iframe src="<?php echo $store; ?>" style="display: none;"></
     <div class="button-search"></div>
     <input type="text" name="search" placeholder="<?php echo $text_search; ?>" value="<?php echo $search; ?>" />
   </div>
+  <div id="header_contacts">
+      <div id="contacts_phone"><span class="glyphicon"></span>+7&nbsp;963&nbsp;441&nbsp;92&nbsp;97</div>
+      <div id="contacts_email"><span class="glyphicon"></span><a href="mailto:sale@kraska-rf.ru">sale@kraska-rf.ru</a></div>
+  </div>
   <div id="welcome">
     <?php if (!$logged) { ?>
     <?php echo $text_welcome; ?>

@@ -60,9 +60,6 @@ img{
 .response-cat, .response-link, .response-content{
 	display:none;
 }
-/* Desktop standard 960 and up */
-@media only screen and (min-width: 980px) {
-}
 
 /* Tablet Portrait size to standard 980*/
 @media only screen and (max-width: 980px) {
@@ -82,6 +79,9 @@ img{
 	#column-left + #column-right + #content, #column-left + #content {
 		margin-left: 0px;
 	}
+	#header_contacts #contacts_phone {   
+        font-size: 14px;
+    }
 }
 
 /* Mobile Landscape Size to Tablet Portrait */
@@ -100,6 +100,24 @@ img{
 	#column-right + #content {
 		margin-right:0px;
 	}
+	#header {
+	    height: 130px;
+	}
+    #header_contacts {
+        top: 100px;
+        left: 10px;    
+    }	
+    #header_contacts div {
+        display: inline-block;  
+    }  
+       
+    #header_contacts #contacts_email {
+        margin-left: 10px;    
+    }   
+    
+    .glyphicon {
+        margin-right: 5px;
+    }      
 	/*
 	#header {
 		height:220px;
@@ -119,17 +137,15 @@ img{
 		left: 5px;
 		top: 5px;
 	}
-	/*
 	#header #cart {
-		top: 122px;
+		top: 0px;
 	}
-	*/
 	#header #welcome{
-		top:90px;
+		top:70px;
 	}
 	#header #search{
-		top: 0px;
-		margin-right: 5px;
+		top: 105px;
+		right: 0px;
 	}
 	#header .links{
 		display:none;
@@ -182,7 +198,7 @@ img{
 	#header #cart {
 		left: 5px;
 		right: auto;
-		top: 120px;
+		top: 125px;
 	}
 	#header #cart .heading{
 		float: left;
@@ -190,20 +206,34 @@ img{
 		padding-left: 0px;
 	}
 	#header #search{
-		top: 180px;
-		margin-right: auto;
-		left: 5px;
+		top: 145px;		
+		left: 160px;
 		right: auto;
+        margin-right: auto;
+        width: 100px;		
+		z-index: 99;
 	}	
+    #header #search input {
+        width: 64px;
+    }	
 	#header #welcome {
 		left: 5px;
 		right: auto;
-		top: 100px;
+		top: 185px;
 		text-align: left;
 	}
 	#header .links{
 		display:none;
 	}
+	
+    #header_contacts {
+        z-index: 96;    
+    }	
+	
+    #header_contacts #contacts_phone {   
+        font-size: inherit;
+    }  	
+	
 	.product-info > .left {
 		float: left;
 		margin-right: auto;
