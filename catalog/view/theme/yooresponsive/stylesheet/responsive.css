@@ -61,8 +61,8 @@ img{
 	display:none;
 }
 
-/* Tablet Portrait size to standard 980*/
-@media only screen and (max-width: 980px) {
+/* Tablet Landscape 992 */
+@media only screen and (max-width: 1002px) {
 	body{
 		/*
 		background-color:#FFF;
@@ -70,7 +70,7 @@ img{
 		*/
 	}
 	#container{
-		width: 760px;
+		width: 750px;
 		padding:10px;		
 	}
 	#column-left{
@@ -85,7 +85,7 @@ img{
 }
 
 /* Mobile Landscape Size to Tablet Portrait */
-@media only screen and (max-width: 780px) {
+@media only screen and (max-width: 778px) {
 	body {
 		background: #FFF;
 	}
@@ -169,7 +169,7 @@ img{
 	*/
 }
 
-@media only screen and (max-width: 600px) {	
+@media only screen and (max-width: 610px) {	
 	#header {
 		height: 200px;
 	}

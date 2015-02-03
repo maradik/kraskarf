@@ -66,7 +66,7 @@ label {
 }
 /* layout */
 #container {
-	width: 980px;
+	width: 970px;
 	margin-left: auto;
 	margin-right: auto;
 	text-align: left;
@@ -125,10 +125,10 @@ label {
 #header_contacts #contacts_email {    
 }
 #header_contacts #contacts_phone .glyphicon {
-    background: #FFFFFF url('../image/glyphicons/glyphicons-442-phone-alt.png') center no-repeat;    
+    background: #FFFFFF url('../image/glyphicons/glyphicons-442-phone-alt-y2.png') center no-repeat;    
 }
 #header_contacts #contacts_email .glyphicon {
-    background: #FFFFFF url('../image/glyphicons/glyphicons-11-envelope.png') center no-repeat;
+    background: #FFFFFF url('../image/glyphicons/glyphicons-11-envelope-y2.png') center no-repeat;
 }       
 .glyphicon {
     display: block;
