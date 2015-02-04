@@ -125,10 +125,10 @@ label {
 #header_contacts #contacts_email {    
 }
 #header_contacts #contacts_phone .glyphicon {
-    background: #FFFFFF url('../image/glyphicons/glyphicons-442-phone-alt-y2.png') center no-repeat;    
+    background: #FFFFFF url('../image/glyphicons/glyphicons-442-phone-alt-y.png') center no-repeat;    
 }
 #header_contacts #contacts_email .glyphicon {
-    background: #FFFFFF url('../image/glyphicons/glyphicons-11-envelope-y2.png') center no-repeat;
+    background: #FFFFFF url('../image/glyphicons/glyphicons-11-envelope-y.png') center no-repeat;
 }       
 .glyphicon {
     display: block;
