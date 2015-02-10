@@ -102,8 +102,8 @@ label {
 }
 #header #logo {
 	position: absolute;
-	top: 15px;
-	left: 25px;
+	top: 0px;
+	left: 5px;
 }
 #header_contacts {
     position: absolute;
@@ -121,14 +121,17 @@ label {
 #header_contacts #contacts_phone {   
     font-size: 22px;
     font-weight: bold;
+    /*
+    color: #27459d;
+    */
 }
-#header_contacts #contacts_email {    
+#header_contacts #contacts_email a {
 }
 #header_contacts #contacts_phone .glyphicon {
-    background: #FFFFFF url('../image/glyphicons/glyphicons-442-phone-alt-y.png') center no-repeat;    
+    background: #FFFFFF url('../image/glyphicons/glyphicons-442-phone-alt-y2.png') center no-repeat;    
 }
 #header_contacts #contacts_email .glyphicon {
-    background: #FFFFFF url('../image/glyphicons/glyphicons-11-envelope-y.png') center no-repeat;
+    background: #FFFFFF url('../image/glyphicons/glyphicons-11-envelope-y2.png') center no-repeat;
 }       
 .glyphicon {
     display: block;
@@ -1666,7 +1669,7 @@ ul.box-filter > li ul {
 #footer {
 	clear: both;
 	overflow: auto;
-	min-height: 100px;
+	min-height: 50px;
 	padding: 20px;
 	background: #edd25f;	
 	border:1px solid #8f6b0d;		
@@ -1681,10 +1684,11 @@ ul.box-filter > li ul {
 	margin-top: 0px;
 	margin-bottom: 8px;
 }
-#footer .column {
+#footer .column {   
 	float: left;
-	width: 25%;
-	min-height: 100px;
+	width: 28%;
+	min-height: 50px;
+	padding-left: 5%;
 }
 #footer .column ul {
 	margin-top: 0px;

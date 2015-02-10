@@ -81,7 +81,11 @@ img{
 	}
 	#header_contacts #contacts_phone {   
         font-size: 14px;
-    }
+    }   
+    #footer .column {   
+        width: 33%;
+        padding-left: 0;
+    }    
 }
 
 /* Mobile Landscape Size to Tablet Portrait */
@@ -105,7 +109,7 @@ img{
 	}
     #header_contacts {
         top: 100px;
-        left: 10px;    
+        left: 5px;    
     }	
     #header_contacts div {
         display: inline-block;  
@@ -153,8 +157,12 @@ img{
 	
 	#footer .column {
 		width: 49%;
-		min-height: 120px;
+		min-height: 50px;
 	}
+	
+    #footer .column3 {
+        display: none;
+    }	
 	
 	#menu > ul > li > div > ul > li > ul{
 		padding-left:20px;

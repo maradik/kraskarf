@@ -142,4 +142,4 @@ if ($categories) {
     <div class="warning"><?php echo $error ?><img src="catalog/view/theme/yoosingle/image/close.png" alt="" class="close" /></div>
     
 <?php } ?>
-<div id="notification"></div>
+<div id="notification"></div> 
