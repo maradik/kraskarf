@@ -151,31 +151,38 @@ class ControllerCommonHeader extends Controller {
                 'href'      => $this->data['home']
             )
         );        
+
+        $this->load->model('catalog/information');
+        $informations = array(); // submenu Статьи
+        $informations_m = array(); // addition menu Items
+        foreach ($this->model_catalog_information->getInformations() as $result) {             
+            if ($result['bottom']) {
+                if ($result['sort_order'] > 0) { // submenu Статьи
+                    $informations[] = array(
+                        'name' => $result['title'],
+                        'href'  => $this->url->link('information/information', 'information_id=' . $result['information_id'])
+                    );
+                } elseif ($result['sort_order'] < 0) { // menu Items
+                    $informations_m[] = array(
+                        'name'      => $result['title'],
+                        'children'  => array(),            
+                        'active'    => true,
+                        'column'    => 1,
+                        'href'      => $this->url->link('information/information', 'information_id=' . $result['information_id'])
+                    );                      
+                }
+            }
+        }        
+        
         $this->data['categories'][] = array(
             'name'      => 'Статьи',
-            'children'  => array(
-                array(
-                    'name'      => 'Наливная ванна',
-                    'href'      => $this->url->link('nalivnaya-vanna')
-                ),
-                array(
-                    'name'      => 'Правильный уход за ванной',
-                    'href'      => $this->url->link('uhod-za-vannoy')
-                ),
-            ),            
+            'children'  => $informations,            
             'active'    => true,
             'column'    => 1,
             'href'      => "#"
         );
-        $this->data['categories'][] = array(
-            'name'      => 'О нас',
-            'children'  => array(),            
-            'active'    => true,
-            'column'    => 1,
-            'href'      => $this->url->link('about_us')
-        );        
-        
-		$this->children = array(
+        $this->data['categories'] = array_merge($this->data['categories'], $informations_m);
+        $this->children = array(
 			'module/language',
 			'module/currency',
 			'module/cart'

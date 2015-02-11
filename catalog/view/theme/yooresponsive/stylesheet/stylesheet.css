@@ -66,7 +66,7 @@ label {
 }
 /* layout */
 #container {
-	width: 980px;
+	width: 970px;
 	margin-left: auto;
 	margin-right: auto;
 	text-align: left;
@@ -102,8 +102,43 @@ label {
 }
 #header #logo {
 	position: absolute;
-	top: 15px;
-	left: 25px;
+	top: 0px;
+	left: 5px;
+}
+#header_contacts {
+    position: absolute;
+    top: 25px;
+    left: 45%;    
+    line-height: 24px;
+    z-index: 96;
+}
+#header_contacts a {
+    text-decoration: none;
+}
+#header_contacts div {
+    margin: 5px 0;  
+}
+#header_contacts #contacts_phone {   
+    font-size: 22px;
+    font-weight: bold;
+    /*
+    color: #27459d;
+    */
+}
+#header_contacts #contacts_email a {
+}
+#header_contacts #contacts_phone .glyphicon {
+    background: #FFFFFF url('../image/glyphicons/glyphicons-442-phone-alt-y2.png') center no-repeat;    
+}
+#header_contacts #contacts_email .glyphicon {
+    background: #FFFFFF url('../image/glyphicons/glyphicons-11-envelope-y2.png') center no-repeat;
+}       
+.glyphicon {
+    display: block;
+    width: 24px;
+    height: 22px;        
+    margin-right: 10px;  
+    float: left;
 }
 #language {
 	display: none;
@@ -142,7 +177,7 @@ label {
 }
 #header #cart {
 	position: absolute;
-	top: 25px;
+	top: 5px;
 	right: 10px;
 	z-index: 9;
 	min-width: 300px;
@@ -292,7 +327,7 @@ label {
 }
 #header #welcome {
 	position: absolute;
-	top: 90px;
+	top: 70px;
 	right: 0px;
 	z-index: 5;
 	width: 298px;
@@ -1638,7 +1673,7 @@ ul.box-filter > li ul {
 #footer {
 	clear: both;
 	overflow: auto;
-	min-height: 100px;
+	min-height: 50px;
 	padding: 20px;
 	background: #edd25f;	
 	border:1px solid #8f6b0d;		
@@ -1653,10 +1688,11 @@ ul.box-filter > li ul {
 	margin-top: 0px;
 	margin-bottom: 8px;
 }
-#footer .column {
+#footer .column {   
 	float: left;
-	width: 25%;
-	min-height: 100px;
+	width: 28%;
+	min-height: 50px;
+	padding-left: 5%;
 }
 #footer .column ul {
 	margin-top: 0px;
