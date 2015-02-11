@@ -227,6 +227,13 @@ img{
 	}
 	
 }
+
+@media only screen and (min-height: 1400px) {
+	body {
+		background-position: center top;
+	}
+}
+
 /*
 @media only screen and (max-width: 250px) {
 	#header {

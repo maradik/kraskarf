@@ -1,4 +1,24 @@
 $(document).ready(function() {
+    /* Menu subcategories */
+    $('#menu > ul.normal-cat > li > a[href=\'#\']').live('click', function(event) {
+        event = event || window.event;
+        var elParent = $(event.target).parent();
+        var el = elParent.find("div");
+        if (el.css('display') == 'table') {
+            el.css('display', '');
+        } else {
+            el.css('display', 'table');
+        }
+        /*       
+        if (elParent.find("div.display-submenu-block").length) {
+            el.removeClass('display-submenu-block');            
+        } else {
+            el.addClass('display-submenu-block');
+        }
+        */
+        return false;
+    });
+    
 	/* Search */
 	$('.button-search').bind('click', function() {
 		url = $('base').attr('href') + 'index.php?route=product/search';
