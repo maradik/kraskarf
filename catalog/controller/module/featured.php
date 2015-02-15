@@ -7,7 +7,7 @@ class ControllerModuleFeatured extends Controller {
 		
 		$this->data['button_cart'] = $this->language->get('button_cart');
 		
-		$this->load->model('catalog/product'); 
+		$this->load->model('catalog/product');
 		
 		$this->load->model('tool/image');
 
@@ -48,7 +48,17 @@ class ControllerModuleFeatured extends Controller {
 				} else {
 					$rating = false;
 				}
-					
+                
+                // Antony -->   
+                $main_category = $this->model_catalog_product->getMainCategory($product_id);
+                $main_category_href = $this->url->link('product/category', 'path=' . $main_category['category_id']);                
+                $product_href = $this->url->link('product/product', 'product_id=' . $product_info['product_id']);
+                if (strpos($product_href, '?') === false) {
+                    $product_href = substr($product_href, strrpos($product_href, '/') + 1, strlen($product_href) - strrpos($product_href, '/') - 1);
+                    $product_href = $main_category_href . '/' . $product_href;
+                }
+                // Antony <--
+
 				$this->data['products'][] = array(
 					'product_id' => $product_info['product_id'],
 					'thumb'   	 => $image,
@@ -57,7 +67,8 @@ class ControllerModuleFeatured extends Controller {
 					'special' 	 => $special,
 					'rating'     => $rating,
 					'reviews'    => sprintf($this->language->get('text_reviews'), (int)$product_info['reviews']),
-					'href'    	 => $this->url->link('product/product', 'product_id=' . $product_info['product_id']),
+					//'href'    	 => $this->url->link('product/product', 'product_id=' . $product_info['product_id']),
+					'href'       => $product_href
 				);
 			}
 		}

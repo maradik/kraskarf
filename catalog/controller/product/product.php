@@ -243,6 +243,7 @@ class ControllerProductProduct extends Controller {
 			$this->data['text_select'] = $this->language->get('text_select');
 			$this->data['text_manufacturer'] = $this->language->get('text_manufacturer');
 			$this->data['text_model'] = $this->language->get('text_model');
+            $this->data['text_weight'] = $this->language->get('text_weight');
 			$this->data['text_reward'] = $this->language->get('text_reward');
 			$this->data['text_points'] = $this->language->get('text_points');	
 			$this->data['text_discount'] = $this->language->get('text_discount');
@@ -284,6 +285,8 @@ class ControllerProductProduct extends Controller {
 			$this->data['manufacturer'] = $product_info['manufacturer'];
 			$this->data['manufacturers'] = $this->url->link('product/manufacturer/info', 'manufacturer_id=' . $product_info['manufacturer_id']);
 			$this->data['model'] = $product_info['model'];
+            $this->data['weight'] = (float)$product_info['weight'];
+            $this->data['weight_class'] = $this->weight->getUnit($product_info['weight_class_id']);
 			$this->data['reward'] = $product_info['reward'];
 			$this->data['points'] = $product_info['points'];
 			
@@ -436,6 +439,16 @@ class ControllerProductProduct extends Controller {
 					$rating = false;
 				}
 							
+                // Antony -->   
+                $main_category = $this->model_catalog_product->getMainCategory($result['product_id']);
+                $main_category_href = $this->url->link('product/category', 'path=' . $main_category['category_id']);                
+                $product_href = $this->url->link('product/product', 'product_id=' . $result['product_id']);
+                if (strpos($product_href, '?') === false) {
+                    $product_href = substr($product_href, strrpos($product_href, '/') + 1, strlen($product_href) - strrpos($product_href, '/') - 1);
+                    $product_href = $main_category_href . '/' . $product_href;
+                }
+                // Antony <--                            
+                            
 				$this->data['products'][] = array(
 					'product_id' => $result['product_id'],
 					'thumb'   	 => $image,
@@ -444,7 +457,8 @@ class ControllerProductProduct extends Controller {
 					'special' 	 => $special,
 					'rating'     => $rating,
 					'reviews'    => sprintf($this->language->get('text_reviews'), (int)$result['reviews']),
-					'href'    	 => $this->url->link('product/product', 'product_id=' . $result['product_id'])
+					//'href'    	 => $this->url->link('product/product', 'product_id=' . $result['product_id'])
+                    'href'       => $product_href
 				);
 			}	
 			

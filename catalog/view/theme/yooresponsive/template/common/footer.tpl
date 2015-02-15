@@ -2,8 +2,9 @@
   <div class="column">
     <h3><?php echo $text_service; ?></h3>
     <ul>
-      <li><a href="<?php echo $account; ?>"><?php echo $text_account; ?></a></li>
+      <li class="contacts-phone"><strong><?php echo $contacts_telephone; ?></strong></li>      
       <li><a href="<?php echo $contact; ?>"><?php echo $text_contact; ?></a></li>
+      <li><a href="<?php echo $account; ?>"><?php echo $text_account; ?></a></li>
     </ul>
   </div>
   <?php if (!empty($informations)) { ?>

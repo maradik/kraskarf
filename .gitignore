@@ -4,3 +4,7 @@ system/cache/*
 .project
 .htaccess*
 system/logs/*
+system/cache
+system/logs
+config.php
+admin/config.php

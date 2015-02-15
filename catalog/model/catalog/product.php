@@ -483,6 +483,16 @@ class ModelCatalogProduct extends Model {
 		
 		return $query->rows;
 	}	
+	
+    public function getMainCategory($product_id) {
+        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_to_category WHERE main_category = 1 AND product_id = '" . (int)$product_id . "' limit 1");
+        
+        if ($query->num_rows) {
+            return $query->rows[0];
+        } else {
+            return array('product_id' => 0, 'category_id' => 0, 'main_category' => 0);
+        }
+    }	
 		
 	public function getTotalProducts($data = array()) {
 		if ($this->customer->isLogged()) {
