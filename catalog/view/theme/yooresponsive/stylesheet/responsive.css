@@ -73,6 +73,9 @@ img{
 		width: 750px;
 		padding:10px;		
 	}
+	#content .welcome-content {
+		font-size: 18px;
+	}	
 	#column-left{
 		display:none;
 	}
@@ -98,6 +101,10 @@ img{
 		margin-left: auto;
 		margin-right: auto;		
 	}	
+	#content .welcome-content {
+		font-size: 16px;
+		margin-bottom: 20px;
+	}
 	#column-right{
 		display:none;
 	}
@@ -178,6 +185,16 @@ img{
 }
 
 @media only screen and (max-width: 610px) {	
+	.welcome {
+		margin-left: 5px;
+		font-size: 26px;
+	}	
+	#content .welcome-content {
+		font-size: 14px;
+	}	
+	#content .welcome-content ul {
+		margin-left: 0;
+	}		
 	#header {
 		height: 200px;
 	}

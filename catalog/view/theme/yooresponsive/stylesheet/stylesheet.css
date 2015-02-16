@@ -22,6 +22,14 @@ h1, .welcome {
 	font-weight: normal;
 	text-shadow: 0 0 1px rgba(0, 0, 0, .01);
 }
+.welcome {
+	margin-left: 15px;
+}
+.welcome .welcome-alert {
+	font-size: 48px;
+	font-weight: bold;
+	color: #9b0f10;
+}
 h2 {
 	color: #000000;
 	font-size: 16px;
@@ -85,6 +93,17 @@ label {
 	min-height: 400px;
 	margin-bottom: 25px;
 	text-align: justify;
+}
+#content .welcome-content {
+	font-size: 20px;
+	margin-bottom: 30px;
+}
+#content .welcome-content ul {
+	margin-left: 10px;
+}
+#content .welcome-content ul li {
+	margin-bottom: 10px;
+	list-style-image: url("../image/glyphicons/glyphicons-153-check-g.png");
 }
 #column-left + #column-right + #content, #column-left + #content {
 	margin-left: 195px;
@@ -1731,4 +1750,22 @@ ul.box-filter > li ul {
 }
 .main-welcome-content {
 	line-height: 1.6;
+}
+
+.video-container {
+	position:relative;
+	width: 80%;
+	padding-bottom:45%;
+	padding-top:30px;
+	margin-bottom: 20px;
+	height:0;
+	overflow:hidden;
+}
+
+.video-container iframe, .video-container object, .video-container embed {
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
 }
