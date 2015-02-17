@@ -71,7 +71,7 @@ class ControllerProductManufacturer extends Controller {
 		$this->response->setOutput($this->render());										
   	}
 	
-	public function info() {
+	public function info() { 
     	$this->language->load('product/manufacturer');
 		
 		$this->load->model('catalog/manufacturer');
@@ -125,7 +125,7 @@ class ControllerProductManufacturer extends Controller {
    		);
 		
 		$manufacturer_info = $this->model_catalog_manufacturer->getManufacturer($manufacturer_id);
-	
+
 		if ($manufacturer_info) {
 			if ($manufacturer_info['seo_title']) {
 				$this->document->setTitle($manufacturer_info['seo_title']);
@@ -133,6 +133,13 @@ class ControllerProductManufacturer extends Controller {
 				$this->document->setTitle($manufacturer_info['name']);
 				
 			}
+            if ($manufacturer_info['image']) {
+                $this->data['thumb'] = $this->model_tool_image->resize($manufacturer_info['image'], $this->config->get('config_image_category_width'), (int) ($this->config->get('config_image_category_height') / 2));
+                $this->document->setOgImage($this->data['thumb']);
+            } else {
+                $this->data['thumb'] = '';
+            }            
+            
 			$this->document->addScript('catalog/view/javascript/jquery/jquery.total-storage.min.js');
 			$this->document->setDescription($manufacturer_info['meta_description']);
 			$this->document->setKeywords($manufacturer_info['meta_keyword']);
