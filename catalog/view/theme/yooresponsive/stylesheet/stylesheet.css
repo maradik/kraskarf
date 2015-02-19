@@ -1797,3 +1797,6 @@ ul.box-filter > li ul {
 	height:100%;
 }
 
+.hidden {
+	display: none;
+}
