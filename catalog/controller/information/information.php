@@ -5,6 +5,10 @@ class ControllerInformationInformation extends Controller {
 		
 		$this->load->model('catalog/information');
 		
+        $this->data['contacts_address']     = nl2br($this->config->get('config_address'));
+        $this->data['contacts_telephone']   = $this->config->get('config_telephone');
+        $this->data['contacts_email']       = $this->config->get('config_email');
+        
 		$this->data['breadcrumbs'] = array();
 		
       	$this->data['breadcrumbs'][] = array(
@@ -27,7 +31,7 @@ class ControllerInformationInformation extends Controller {
 			} else {
 				$this->document->setTitle($information_info['title']);
 			}
-			$this->document->setDescription($information_info['meta_description']);
+			$this->document->setDescription($this->inject_var_values($information_info['meta_description']));
 			$this->document->setKeywords($information_info['meta_keyword']);
 			
       		$this->data['breadcrumbs'][] = array(
@@ -44,8 +48,9 @@ class ControllerInformationInformation extends Controller {
       		
       		$this->data['button_continue'] = $this->language->get('button_continue');
 			
-			$this->data['description'] = html_entity_decode($information_info['description'], ENT_QUOTES, 'UTF-8');
-      		
+			//$this->data['description'] = html_entity_decode($information_info['description'], ENT_QUOTES, 'UTF-8');
+      		$this->data['description'] = $this->inject_var_values(html_entity_decode($information_info['description'], ENT_QUOTES, 'UTF-8'));
+            
 			$this->data['continue'] = $this->url->link('common/home');
 
 			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/information/information.tpl')) {
@@ -102,7 +107,7 @@ class ControllerInformationInformation extends Controller {
 	
 	public function info() {
 		$this->load->model('catalog/information');
-		
+		       
 		if (isset($this->request->get['information_id'])) {
 			$information_id = (int)$this->request->get['information_id'];
 		} else {
@@ -127,5 +132,13 @@ class ControllerInformationInformation extends Controller {
 			$this->response->setOutput($output);
 		}
 	}
+
+    public function inject_var_values($strdata) {
+        $strdata = str_replace('%contacts_address%', $this->data['contacts_address'], $strdata);
+        $strdata = str_replace('%contacts_telephone%', $this->data['contacts_telephone'], $strdata);
+        $strdata = str_replace('%contacts_email%', $this->data['contacts_email'], $strdata);
+        
+        return $strdata; 
+    }
 }
 ?>
