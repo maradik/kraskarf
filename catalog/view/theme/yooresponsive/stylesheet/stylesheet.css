@@ -1800,3 +1800,11 @@ ul.box-filter > li ul {
 .hidden {
 	display: none;
 }
+
+#checkout {
+	display: none;
+}
+
+#payment-method {
+	display:none;
+}

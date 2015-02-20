@@ -30,7 +30,7 @@
 </table>
 <br />
 <?php } ?>
-<b><?php echo $text_comments; ?></b>
+<b><?php echo $text_comments; ?></b><br />
 <textarea name="comment" rows="8" style="width: 98%;"><?php echo $comment; ?></textarea>
 <br />
 <br />
