@@ -285,13 +285,13 @@
   <?php } ?>
   <?php if ($review_status) { ?>
   <div id="tab-review" class="tab-content">
-    <div id="review"></div>
-    <h2 id="review-title"><?php echo $text_write; ?></h2>
+    <div class="product-review"></div>
+    <h2 class="product-review-title"><?php echo $text_write; ?></h2>
     <b><?php echo $entry_name; ?></b><br />
     <input type="text" name="name" value="" />
     <br />
     <br />
-    <b><?php echo $entry_review; ?></b>
+    <b><?php echo $entry_review; ?></b><br />
     <textarea name="text" cols="40" rows="8" style="width: 98%;"></textarea>
     <span style="font-size: 11px;"><?php echo $text_note; ?></span><br />
     <br />
@@ -310,10 +310,10 @@
     <b><?php echo $entry_captcha; ?></b><br />
     <input type="text" name="captcha" value="" />
     <br />
-    <img src="index.php?route=product/product/captcha" alt="" id="captcha" /><br />
+    <img src="index.php?route=product/product/captcha" alt="" class="product-captcha" /><br />
     <br />
     <div class="buttons">
-      <div class="right"><a id="button-review" class="button"><?php echo $button_continue; ?></a></div>
+      <div class="right"><a class="button button-product-review"><?php echo $button_continue; ?></a></div>
     </div>
   </div>
   <?php } ?>
@@ -375,13 +375,13 @@
   <?php } ?>
   <?php if ($review_status) { ?>
   <div class="tab-content"><h2><?php echo $tab_review; ?></h2>
-    <div id="review"></div>
-    <h2 id="review-title"><?php echo $text_write; ?></h2>
+    <div class="product-review"></div>
+    <h2 class="product-review-title"><?php echo $text_write; ?></h2>
     <b><?php echo $entry_name; ?></b><br />
     <input type="text" name="name" value="" />
     <br />
     <br />
-    <b><?php echo $entry_review; ?></b>
+    <b><?php echo $entry_review; ?></b><br />
     <textarea name="text" cols="40" rows="8" style="width: 98%;"></textarea>
     <span style="font-size: 11px;"><?php echo $text_note; ?></span><br />
     <br />
@@ -400,10 +400,10 @@
     <b><?php echo $entry_captcha; ?></b><br />
     <input type="text" name="captcha" value="" />
     <br />
-    <img src="index.php?route=product/product/captcha" alt="" id="captcha" /><br />
+    <img src="index.php?route=product/product/captcha" alt="" id="product-captcha" /><br />
     <br />
     <div class="buttons">
-      <div class="right"><a id="button-review" class="button"><?php echo $button_continue; ?></a></div>
+      <div class="right"><a class="button button-product-review"><?php echo $button_continue; ?></a></div>
     </div>
   </div>
   <?php } ?>
@@ -548,40 +548,42 @@ new AjaxUpload('#button-option-<?php echo $option['product_option_id']; ?>', {
 <?php } ?>
 <?php } ?>
 <script type="text/javascript"><!--
-$('#review .pagination a').live('click', function() {
-	$('#review').fadeOut('slow');
+$('.product-review .pagination a').live('click', function() {
+	$('.product-review').fadeOut('slow');
 		
-	$('#review').load(this.href);
+	$('.product-review').load(this.href);
 	
-	$('#review').fadeIn('slow');
+	$('.product-review').fadeIn('slow');
 	
 	return false;
 });			
 
-$('#review').load('index.php?route=product/product/review&product_id=<?php echo $product_id; ?>');
+$('.product-review').load('index.php?route=product/product/review&product_id=<?php echo $product_id; ?>');
 
-$('#button-review').bind('click', function() {
+$('.button-product-review').bind('click', function() { 
 	$.ajax({
 		url: 'index.php?route=product/product/write&product_id=<?php echo $product_id; ?>',
 		type: 'post',
 		dataType: 'json',
-		data: 'name=' + encodeURIComponent($('input[name=\'name\']').val()) + '&text=' + encodeURIComponent($('textarea[name=\'text\']').val()) + '&rating=' + encodeURIComponent($('input[name=\'rating\']:checked').val() ? $('input[name=\'rating\']:checked').val() : '') + '&captcha=' + encodeURIComponent($('input[name=\'captcha\']').val()),
+		data: $('.response-content').css('display') == 'none' 
+			? 'name=' + encodeURIComponent($('input[name=\'name\']:first').val()) + '&text=' + encodeURIComponent($('textarea[name=\'text\']:first').val()) + '&rating=' + encodeURIComponent($('input[name=\'rating\']:checked:first').val() ? $('input[name=\'rating\']:checked:first').val() : '') + '&captcha=' + encodeURIComponent($('input[name=\'captcha\']:first').val())
+			: 'name=' + encodeURIComponent($('input[name=\'name\']:last').val()) + '&text=' + encodeURIComponent($('textarea[name=\'text\']:last').val()) + '&rating=' + encodeURIComponent($('input[name=\'rating\']:checked:last').val() ? $('input[name=\'rating\']:checked:last').val() : '') + '&captcha=' + encodeURIComponent($('input[name=\'captcha\']:last').val()),
 		beforeSend: function() {
 			$('.success, .warning').remove();
-			$('#button-review').attr('disabled', true);
-			$('#review-title').after('<div class="attention"><img src="catalog/view/theme/default/image/loading.gif" alt="" /> <?php echo $text_wait; ?></div>');
+			$('.button-product-review').attr('disabled', true);
+			$('.product-review-title').after('<div class="attention"><img src="catalog/view/theme/default/image/loading.gif" alt="" /> <?php echo $text_wait; ?></div>');
 		},
 		complete: function() {
-			$('#button-review').attr('disabled', false);
+			$('.button-product-review').attr('disabled', false);
 			$('.attention').remove();
 		},
 		success: function(data) {
 			if (data['error']) {
-				$('#review-title').after('<div class="warning">' + data['error'] + '</div>');
+				$('.product-review-title').after('<div class="warning">' + data['error'] + '</div>');
 			}
 			
 			if (data['success']) {
-				$('#review-title').after('<div class="success">' + data['success'] + '</div>');
+				$('.product-review-title').after('<div class="success">' + data['success'] + '</div>');
 								
 				$('input[name=\'name\']').val('');
 				$('textarea[name=\'text\']').val('');
