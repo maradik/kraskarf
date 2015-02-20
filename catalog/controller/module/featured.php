@@ -53,7 +53,7 @@ class ControllerModuleFeatured extends Controller {
                 $main_category = $this->model_catalog_product->getMainCategory($product_id);
                 $main_category_href = $this->url->link('product/category', 'path=' . $main_category['category_id']);                
                 $product_href = $this->url->link('product/product', 'product_id=' . $product_info['product_id']);
-                if (strpos($product_href, '?') === false) {
+                if (strpos($product_href, '?') === false && false) {
                     $product_href = substr($product_href, strrpos($product_href, '/') + 1, strlen($product_href) - strrpos($product_href, '/') - 1);
                     $product_href = $main_category_href . '/' . $product_href;
                 }

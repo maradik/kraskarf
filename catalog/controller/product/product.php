@@ -443,7 +443,7 @@ class ControllerProductProduct extends Controller {
                 $main_category = $this->model_catalog_product->getMainCategory($result['product_id']);
                 $main_category_href = $this->url->link('product/category', 'path=' . $main_category['category_id']);                
                 $product_href = $this->url->link('product/product', 'product_id=' . $result['product_id']);
-                if (strpos($product_href, '?') === false) {
+                if (strpos($product_href, '?') === false && false) {
                     $product_href = substr($product_href, strrpos($product_href, '/') + 1, strlen($product_href) - strrpos($product_href, '/') - 1);
                     $product_href = $main_category_href . '/' . $product_href;
                 }
