@@ -1203,7 +1203,7 @@ class ControllerSaleOrder extends Controller {
       		$this->error['lastname'] = $this->language->get('error_lastname');
     	}
 
-    	if ((utf8_strlen($this->request->post['email']) > 96) || (!$this->ocstore->validate($this->request->post['email']))) {
+    	if (!empty($this->request->post['email']) && ((utf8_strlen($this->request->post['email']) > 96) || (!$this->ocstore->validate($this->request->post['email'])))) {
       		$this->error['email'] = $this->language->get('error_email');
     	}
 		
