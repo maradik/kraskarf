@@ -482,7 +482,7 @@ class ModelCheckoutOrder extends Model {
 			}
 
 			$text .= $language->get('text_new_footer') . "\n\n";
-		      
+	      
             if (!empty($order_info['email'])) {
     			$mail = new Mail(); 
     			$mail->protocol = $this->config->get('config_mail_protocol');
@@ -546,6 +546,22 @@ class ModelCheckoutOrder extends Model {
 					$text .= $order_info['comment'] . "\n\n";
 				}
 			
+                // -->         
+                $text .= "ИНФОРМАЦИЯ ПО ДОСТАВКЕ:\n";     
+                $text .= 'ФИО: ' . (empty($order_info['shipping_firstname']) ? $order_info['firstname'] : $order_info['shipping_firstname']) . "\n";
+                $text .= 'Паспорт: ' . (empty($order_info['shipping_lastname']) ? $order_info['lastname'] : $order_info['shipping_lastname']) . "\n";
+                $text .= 'Телефон: ' . $order_info['telephone'] . "\n";
+                $text .= 'Почта: ' . $order_info['email'] . "\n\n";
+                
+                $text .= 'Регион: ' . $order_info['shipping_zone'] . "\n";
+                $text .= 'Город: ' . $order_info['shipping_city'] . "\n";
+                $text .= 'Адрес: ' . $order_info['shipping_address_1'] . "\n";
+                $text .= 'Индекс: ' . $order_info['shipping_postcode'] . "\n";
+
+                $text .= 'Способ доставки: ' . $order_info['shipping_method'] . "\n\n";
+                $text .= 'Способ оплаты: ' . $order_info['payment_method'] . "\n\n";                                 
+                // <--
+            
 				$mail = new Mail(); 
 				$mail->protocol = $this->config->get('config_mail_protocol');
 				$mail->parameter = $this->config->get('config_mail_parameter');
