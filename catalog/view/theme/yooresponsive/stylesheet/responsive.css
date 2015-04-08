@@ -61,6 +61,17 @@ img{
 	display:none;
 }
 
+#menu {
+	height: auto;
+	padding-right: 205px;	
+	padding-top: 6px;
+}
+
+#menu > ul > li {
+	padding-bottom: 0px;
+	padding-top: 0px;
+}
+
 /* Tablet Landscape 992 */
 @media only screen and (max-width: 1002px) {
 	body{
@@ -96,6 +107,9 @@ img{
 @media only screen and (max-width: 778px) {
 	body {
 		background: #FFF;
+	}
+	#menu {
+		padding-right: 5px;
 	}
 	#container{
 		width:auto;
@@ -208,7 +222,7 @@ img{
 	}
 	#menu ul li a {
 		font-size: 90%;
-		margin-bottom: 0px;
+		/*margin-bottom: 0px;*/
 		padding: 4px 5px;
 	}
 	#header #logo{
