@@ -74,6 +74,7 @@
     (w[c] = w[c] || []).push(function() {
         try {
             w.yaCounter28639341 = new Ya.Metrika({id:28639341,
+            		webvisor:true,
                     clickmap:true,
                     accurateTrackBounce:true});
         } catch(e) { }
