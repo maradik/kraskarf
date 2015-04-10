@@ -191,11 +191,11 @@ class ControllerCheckoutGuest extends Controller {
 		} 
 					
 		if (!$json) {
-			if ((utf8_strlen($this->request->post['firstname']) < 1) || (utf8_strlen($this->request->post['firstname']) > 32)) {
+			if ((utf8_strlen($this->request->post['firstname']) < 1) || (utf8_strlen($this->request->post['firstname']) > 64)) {
 				$json['error']['firstname'] = $this->language->get('error_firstname');
 			}
 	
-			if ((utf8_strlen($this->request->post['lastname']) < 1) || (utf8_strlen($this->request->post['lastname']) > 32)) {
+			if (/*(utf8_strlen($this->request->post['lastname']) < 1) || */(utf8_strlen($this->request->post['lastname']) > 200)) {
 				$json['error']['lastname'] = $this->language->get('error_lastname');
 			}
 	
@@ -203,7 +203,8 @@ class ControllerCheckoutGuest extends Controller {
 				$json['error']['email'] = $this->language->get('error_email');
 			}
 			
-			if ((utf8_strlen($this->request->post['telephone']) < 3) || (utf8_strlen($this->request->post['telephone']) > 32)) {
+			if ((utf8_strlen($this->request->post['telephone']) < 3) || (utf8_strlen($this->request->post['telephone']) > 32)
+                || preg_match("/[^\d-()\ \+]/", $this->request->post['telephone']) ) {
 				$json['error']['telephone'] = $this->language->get('error_telephone');
 			}
 

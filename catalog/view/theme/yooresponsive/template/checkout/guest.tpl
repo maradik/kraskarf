@@ -4,26 +4,24 @@
   <input type="text" name="firstname" value="<?php echo $firstname; ?>" class="large-field" />
   <br />
   <br />
-  <span class="required">*</span> <?php echo $entry_lastname; ?><br />
-  <input type="text" name="lastname" value="<?php echo $lastname; ?>" class="large-field" />
-  <div class="hidden">
-  <br />
-  <br />
-  <span class="required">*</span> <?php echo $entry_email; ?><br />
-  <input type="text" name="email" value="<?php echo $email; ?>" class="large-field" />
-  </div>
-  <br />
-  <br />
   <span class="required">*</span> <?php echo $entry_telephone; ?><br />
-  <input type="text" name="telephone" value="<?php echo $telephone; ?>" class="large-field" />
+  <input type="text" name="telephone" value="<?php echo $telephone; ?>" class="large-field" /> 
+  <br />
+  <br />
+  <?php echo $entry_email; ?><br />
+  <input type="text" name="email" value="<?php echo $email; ?>" class="large-field" />  
+  <br />
+  <br />   
+  <?php echo $entry_lastname; ?><br />
+  <input type="text" name="lastname" value="<?php echo $lastname; ?>" class="large-field" /> 
+  <br />
+  <br />  
   <div class="hidden">
-	  <br />
-	  <br />
 	  <?php echo $entry_fax; ?><br />
-	  <input type="text" name="fax" value="<?php echo $fax; ?>" class="large-field" />
+	  <input type="text" name="fax" value="<?php echo $fax; ?>" class="large-field" />  
+	  <br />
+	  <br />
   </div>
-  <br />
-  <br />
 </div>
 <div class="right">
   <h2><?php echo $text_your_address; ?></h2>
@@ -57,22 +55,6 @@
 	    <br />
 	  </div>
   </div>
-  <span class="required">*</span> <?php echo $entry_address_1; ?><br />
-  <input type="text" name="address_1" value="<?php echo $address_1; ?>" class="large-field" />
-  <br />
-  <br />
-  <?php echo $entry_address_2; ?><br />
-  <input type="text" name="address_2" value="<?php echo $address_2; ?>" class="large-field" />
-  <br />
-  <br />
-  <span class="required">*</span> <?php echo $entry_city; ?><br />
-  <input type="text" name="city" value="<?php echo $city; ?>" class="large-field" />
-  <br />
-  <br />
-  <span id="payment-postcode-required" class="required">*</span> <?php echo $entry_postcode; ?><br />
-  <input type="text" name="postcode" value="<?php echo $postcode; ?>" class="large-field" />
-  <br />
-  <br />
   <div class="hidden">
 	  <span class="required">*</span> <?php echo $entry_country; ?><br />
 	  <select name="country_id" class="large-field">
@@ -93,6 +75,24 @@
   </select>
   <br />
   <br />
+  <span class="required">*</span> <?php echo $entry_city; ?><br />
+  <input type="text" name="city" value="<?php echo $city; ?>" class="large-field" />
+  <br />
+  <br />   
+  <span class="required">*</span> <?php echo $entry_address_1; ?><br />
+  <input type="text" name="address_1" value="<?php echo $address_1; ?>" class="large-field" />
+  <br />
+  <br />
+  <div class="hidden">
+	  <?php echo $entry_address_2; ?><br />
+	  <input type="text" name="address_2" value="<?php echo $address_2; ?>" class="large-field" />
+	  <br />
+	  <br />
+  </div>  
+  <span id="payment-postcode-required" class="required">*</span> <?php echo $entry_postcode; ?><br />
+  <input type="text" name="postcode" value="<?php echo $postcode; ?>" class="large-field" />
+  <br />
+  <br />  
   <br />
 </div>
 <?php if ($shipping_required) { ?>
@@ -101,7 +101,7 @@
 	  <?php if ($shipping_address) { ?>
 	  <input type="checkbox" name="shipping_address" value="1" id="shipping" checked="checked" />
 	  <?php } else { ?>
-	  <input type="checkbox" name="shipping_address" value="1" id="shipping" />
+	  <input type="checkbox" name="shipping_address" value="1" id="shipping" checked="checked" />
 	  <?php } ?>
 	  <label for="shipping"><?php echo $entry_shipping; ?></label>
 	  <br />

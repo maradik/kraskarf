@@ -23,9 +23,11 @@
     </div>
     <?php } ?>
     <?php if ($shipping_required) { ?>
-    <div id="shipping-address">
-      <div class="checkout-heading"><?php echo $text_checkout_shipping_address; ?></div>
-      <div class="checkout-content"></div>
+    <div class="hidden">
+	    <div id="shipping-address">
+	      <div class="checkout-heading"><?php echo $text_checkout_shipping_address; ?></div>
+	      <div class="checkout-content"></div>
+	    </div>
     </div>
     <div id="shipping-method">
       <div class="checkout-heading"><?php echo $text_checkout_shipping_method; ?></div>
@@ -411,8 +413,41 @@ $('#button-payment-address').live('click', function() {
 				if (json['error']['zone']) {
 					$('#payment-address select[name=\'zone_id\']').after('<span class="error">' + json['error']['zone'] + '</span>');
 				}
-			} else {
+			} else {		
 				<?php if ($shipping_required) { ?>
+				$.ajax({
+					url: 'index.php?route=checkout/shipping_method',
+					dataType: 'html',
+					success: function(html) {
+						$('#shipping-method .checkout-content').html(html);
+						
+						$('#payment-address .checkout-content').slideUp('slow');
+						
+						$('#shipping-method .checkout-content').slideDown('slow');
+						
+						$('#payment-address .checkout-heading a').remove();
+						$('#shipping-address .checkout-heading a').remove();
+						$('#shipping-method .checkout-heading a').remove();
+						$('#payment-method .checkout-heading a').remove();
+						
+						$('#payment-address .checkout-heading').append('<a><?php echo $text_modify; ?></a>');							
+						
+						$.ajax({
+							url: 'index.php?route=checkout/shipping_address',
+							dataType: 'html',
+							success: function(html) {
+								$('#shipping-address .checkout-content').html(html);
+							},
+							error: function(xhr, ajaxOptions, thrownError) {
+								alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+							}
+						});
+					},
+					error: function(xhr, ajaxOptions, thrownError) {
+						alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+					}
+				});								
+				<?php } elseif ($shipping_required) { ?>					
 				$.ajax({
 					url: 'index.php?route=checkout/shipping_address',
 					dataType: 'html',

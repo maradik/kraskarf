@@ -80,14 +80,14 @@ class ControllerCheckoutShippingMethod extends Controller {
 			$this->template = $this->config->get('config_template') . '/template/checkout/shipping_method.tpl';
 		} else {
 			$this->template = 'default/template/checkout/shipping_method.tpl';
-		}
-		
+		}		     
+        
 		$this->response->setOutput($this->render());
   	}
 	
 	public function validate() {
 		$this->language->load('checkout/checkout');
-		
+
 		$json = array();		
 		
 		// Validate if shipping is required. If not the customer should not have reached this page.

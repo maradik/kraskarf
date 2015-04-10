@@ -71,7 +71,7 @@ class ModelSaleVoucher extends Model {
 		
 	public function sendVoucher($voucher_id) {
 		$voucher_info = $this->getVoucher($voucher_id);
-		
+
 		if ($voucher_info) {
 			if ($voucher_info['order_id']) {
 				$order_id = $voucher_info['order_id'];

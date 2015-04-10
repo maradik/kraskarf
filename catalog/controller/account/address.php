@@ -179,7 +179,7 @@ class ControllerAccountAddress extends Controller {
 			if ($result['address_format']) {
       			$format = $result['address_format'];
     		} else {
-				$format = '{firstname} {lastname}' . "\n" . '{company}' . "\n" . '{address_1}' . "\n" . '{address_2}' . "\n" . '{city} {postcode}' . "\n" . '{zone}' . "\n" . '{country}';
+				$format = '{firstname}'."\n".'{lastname}' . "\n" . '{company}' . "\n" . '{address_1}' . "\n" . '{address_2}' . "\n" . '{city} {postcode}' . "\n" . '{zone}' . "\n" . '{country}';
 			}
 		
     		$find = array(
@@ -497,11 +497,11 @@ class ControllerAccountAddress extends Controller {
   	}
 	
   	protected function validateForm() {
-    	if ((utf8_strlen($this->request->post['firstname']) < 1) || (utf8_strlen($this->request->post['firstname']) > 32)) {
+    	if ((utf8_strlen($this->request->post['firstname']) < 1) || (utf8_strlen($this->request->post['firstname']) > 64)) {
       		$this->error['firstname'] = $this->language->get('error_firstname');
     	}
 
-    	if ((utf8_strlen($this->request->post['lastname']) < 1) || (utf8_strlen($this->request->post['lastname']) > 32)) {
+    	if (/*utf8_strlen($this->request->post['lastname']) < 1) ||*/ (utf8_strlen($this->request->post['lastname']) > 200)) {
       		$this->error['lastname'] = $this->language->get('error_lastname');
     	}
 

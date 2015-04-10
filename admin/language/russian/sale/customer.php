@@ -28,8 +28,8 @@ $_['column_total']          = 'Общая сумма';
 $_['column_action']         = 'Действие';
 
 // Entry
-$_['entry_firstname']       = 'Имя, Отчество:';
-$_['entry_lastname']        = 'Фамилия:';
+$_['entry_firstname']       = 'ФИО:';
+$_['entry_lastname']        = 'Паспорт:';
 $_['entry_email']           = 'E-Mail:';
 $_['entry_telephone']       = 'Телефон:';
 $_['entry_fax']             = 'Факс:';

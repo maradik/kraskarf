@@ -1,8 +1,10 @@
+<!--
 <script language="javascript" type="text/javascript">
  $(document).ready(function(){
  $('#button-payment-method').trigger('click');
  });
 </script>
+-->
 <?php if ($error_warning) { ?>
 <div class="warning"><?php echo $error_warning; ?></div>
 <?php } ?>

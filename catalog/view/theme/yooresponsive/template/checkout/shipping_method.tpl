@@ -30,10 +30,12 @@
 </table>
 <br />
 <?php } ?>
+<div class="hidden">
 <b><?php echo $text_comments; ?></b><br />
 <textarea name="comment" rows="8" style="width: 98%;"><?php echo $comment; ?></textarea>
 <br />
 <br />
+</div>
 <div class="buttons">
   <div class="right">
     <input type="button" value="<?php echo $button_continue; ?>" id="button-shipping-method" class="button" />

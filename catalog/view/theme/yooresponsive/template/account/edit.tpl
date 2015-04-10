@@ -22,10 +22,10 @@
             <?php } ?></td>
         </tr>
         <tr>
-          <td><span class="required">*</span> <?php echo $entry_lastname; ?></td>
-          <td><input type="text" name="lastname" value="<?php echo $lastname; ?>" />
-            <?php if ($error_lastname) { ?>
-            <span class="error"><?php echo $error_lastname; ?></span>
+          <td><span class="required">*</span> <?php echo $entry_telephone; ?></td>
+          <td><input type="text" name="telephone" value="<?php echo $telephone; ?>" />
+            <?php if ($error_telephone) { ?>
+            <span class="error"><?php echo $error_telephone; ?></span>
             <?php } ?></td>
         </tr>
         <tr>
@@ -36,13 +36,13 @@
             <?php } ?></td>
         </tr>
         <tr>
-          <td><span class="required">*</span> <?php echo $entry_telephone; ?></td>
-          <td><input type="text" name="telephone" value="<?php echo $telephone; ?>" />
-            <?php if ($error_telephone) { ?>
-            <span class="error"><?php echo $error_telephone; ?></span>
+          <td><?php echo $entry_lastname; ?></td>
+          <td><input type="text" name="lastname" value="<?php echo $lastname; ?>" />
+            <?php if ($error_lastname) { ?>
+            <span class="error"><?php echo $error_lastname; ?></span>
             <?php } ?></td>
         </tr>
-        <tr>
+        <tr class="hidden">
           <td><?php echo $entry_fax; ?></td>
           <td><input type="text" name="fax" value="<?php echo $fax; ?>" /></td>
         </tr>

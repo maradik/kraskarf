@@ -18,18 +18,18 @@
             <?php } ?></td>
         </tr>
         <tr>
-          <td><span class="required">*</span> <?php echo $entry_lastname; ?></td>
+          <td><?php echo $entry_lastname; ?></td>
           <td><input type="text" name="lastname" value="<?php echo $lastname; ?>" />
             <?php if ($error_lastname) { ?>
             <span class="error"><?php echo $error_lastname; ?></span>
             <?php } ?></td>
         </tr>
-        <tr>
+        <tr class="hidden">
           <td><?php echo $entry_company; ?></td>
           <td><input type="text" name="company" value="<?php echo $company; ?>" /></td>
         </tr>
         <?php if ($company_id_display) { ?>
-        <tr>
+        <tr class="hidden">
           <td><?php echo $entry_company_id; ?></td>
           <td><input type="text" name="company_id" value="<?php echo $company_id; ?>" />
             <?php if ($error_company_id) { ?>
@@ -46,32 +46,7 @@
             <?php } ?></td>
         </tr>
         <?php } ?>
-        <tr>
-          <td><span class="required">*</span> <?php echo $entry_address_1; ?></td>
-          <td><input type="text" name="address_1" value="<?php echo $address_1; ?>" />
-            <?php if ($error_address_1) { ?>
-            <span class="error"><?php echo $error_address_1; ?></span>
-            <?php } ?></td>
-        </tr>
-        <tr>
-          <td><?php echo $entry_address_2; ?></td>
-          <td><input type="text" name="address_2" value="<?php echo $address_2; ?>" /></td>
-        </tr>
-        <tr>
-          <td><span class="required">*</span> <?php echo $entry_city; ?></td>
-          <td><input type="text" name="city" value="<?php echo $city; ?>" />
-            <?php if ($error_city) { ?>
-            <span class="error"><?php echo $error_city; ?></span>
-            <?php } ?></td>
-        </tr>
-        <tr>
-          <td><span id="postcode-required" class="required">*</span> <?php echo $entry_postcode; ?></td>
-          <td><input type="text" name="postcode" value="<?php echo $postcode; ?>" />
-            <?php if ($error_postcode) { ?>
-            <span class="error"><?php echo $error_postcode; ?></span>
-            <?php } ?></td>
-        </tr>
-        <tr>
+        <tr class="hidden">
           <td><span class="required">*</span> <?php echo $entry_country; ?></td>
           <td><select name="country_id">
               <option value=""><?php echo $text_select; ?></option>
@@ -93,6 +68,31 @@
             </select>
             <?php if ($error_zone) { ?>
             <span class="error"><?php echo $error_zone; ?></span>
+            <?php } ?></td>
+        </tr>
+        <tr>
+          <td><span class="required">*</span> <?php echo $entry_city; ?></td>
+          <td><input type="text" name="city" value="<?php echo $city; ?>" />
+            <?php if ($error_city) { ?>
+            <span class="error"><?php echo $error_city; ?></span>
+            <?php } ?></td>
+        </tr>        
+        <tr>
+          <td><span class="required">*</span> <?php echo $entry_address_1; ?></td>
+          <td><input type="text" name="address_1" value="<?php echo $address_1; ?>" />
+            <?php if ($error_address_1) { ?>
+            <span class="error"><?php echo $error_address_1; ?></span>
+            <?php } ?></td>
+        </tr>
+        <tr class="hidden">
+          <td><?php echo $entry_address_2; ?></td>
+          <td><input type="text" name="address_2" value="<?php echo $address_2; ?>" /></td>
+        </tr>    
+       <tr>
+          <td><span id="postcode-required" class="required">*</span> <?php echo $entry_postcode; ?></td>
+          <td><input type="text" name="postcode" value="<?php echo $postcode; ?>" />
+            <?php if ($error_postcode) { ?>
+            <span class="error"><?php echo $error_postcode; ?></span>
             <?php } ?></td>
         </tr>
         <tr>

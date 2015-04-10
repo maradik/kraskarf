@@ -174,13 +174,30 @@ class ControllerCheckoutPaymentAddress extends Controller {
 										
 					unset($this->session->data['payment_method']);	
 					unset($this->session->data['payment_methods']);
+                    
+                    //-->
+                    $this->session->data['shipping_address_id'] = $this->session->data['payment_address_id'];
+                    $this->load->model('account/address');
+                    $address_info = $this->model_account_address->getAddress($this->session->data['shipping_address_id']);                   
+                    if ($address_info) {
+                        $this->session->data['shipping_country_id'] = $address_info['country_id'];
+                        $this->session->data['shipping_zone_id'] = $address_info['zone_id'];
+                        $this->session->data['shipping_postcode'] = $address_info['postcode'];                      
+                    } else {
+                        unset($this->session->data['shipping_country_id']); 
+                        unset($this->session->data['shipping_zone_id']);    
+                        unset($this->session->data['shipping_postcode']);
+                    }                    
+                    unset($this->session->data['shipping_method']);                         
+                    unset($this->session->data['shipping_methods']);                                   
+                    //<--
 				}
 			} else {
-				if ((utf8_strlen($this->request->post['firstname']) < 1) || (utf8_strlen($this->request->post['firstname']) > 32)) {
+				if ((utf8_strlen($this->request->post['firstname']) < 1) || (utf8_strlen($this->request->post['firstname']) > 64)) {
 					$json['error']['firstname'] = $this->language->get('error_firstname');
 				}
 		
-				if ((utf8_strlen($this->request->post['lastname']) < 1) || (utf8_strlen($this->request->post['lastname']) > 32)) {
+				if (/*(utf8_strlen($this->request->post['lastname']) < 1) ||*/ (utf8_strlen($this->request->post['lastname']) > 200)) {
 					$json['error']['lastname'] = $this->language->get('error_lastname');
 				}
 		
@@ -243,7 +260,24 @@ class ControllerCheckoutPaymentAddress extends Controller {
 					$this->session->data['payment_zone_id'] = $this->request->post['zone_id'];
 															
 					unset($this->session->data['payment_method']);	
-					unset($this->session->data['payment_methods']);
+					unset($this->session->data['payment_methods']);  
+                    
+                    //-->
+                    $this->session->data['shipping_address_id'] = $this->session->data['payment_address_id'];
+                    $this->load->model('account/address');
+                    $address_info = $this->model_account_address->getAddress($this->session->data['shipping_address_id']);                   
+                    if ($address_info) {
+                        $this->session->data['shipping_country_id'] = $address_info['country_id'];
+                        $this->session->data['shipping_zone_id'] = $address_info['zone_id'];
+                        $this->session->data['shipping_postcode'] = $address_info['postcode'];                      
+                    } else {
+                        unset($this->session->data['shipping_country_id']); 
+                        unset($this->session->data['shipping_zone_id']);    
+                        unset($this->session->data['shipping_postcode']);
+                    }                    
+                    unset($this->session->data['shipping_method']);                         
+                    unset($this->session->data['shipping_methods']);                                   
+                    //<--                                                         
 				}		
 			}		
 		}

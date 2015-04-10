@@ -704,7 +704,7 @@ class ModelSaleOrder extends Model {
 			}
 
 			$message .= $language->get('text_footer');
-
+            
 			$mail = new Mail();
 			$mail->protocol = $this->config->get('config_mail_protocol');
 			$mail->parameter = $this->config->get('config_mail_parameter');

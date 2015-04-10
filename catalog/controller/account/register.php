@@ -351,11 +351,11 @@ class ControllerAccountRegister extends Controller {
   	}
 
   	protected function validate() {
-    	if ((utf8_strlen($this->request->post['firstname']) < 1) || (utf8_strlen($this->request->post['firstname']) > 32)) {
+    	if ((utf8_strlen($this->request->post['firstname']) < 1) || (utf8_strlen($this->request->post['firstname']) > 64)) {
       		$this->error['firstname'] = $this->language->get('error_firstname');
     	}
 
-    	if ((utf8_strlen($this->request->post['lastname']) < 1) || (utf8_strlen($this->request->post['lastname']) > 32)) {
+    	if (/*(utf8_strlen($this->request->post['lastname']) < 1) ||*/ (utf8_strlen($this->request->post['lastname']) > 200)) {
       		$this->error['lastname'] = $this->language->get('error_lastname');
     	}
 
@@ -367,7 +367,8 @@ class ControllerAccountRegister extends Controller {
       		$this->error['warning'] = $this->language->get('error_exists');
     	}
 		
-    	if ((utf8_strlen($this->request->post['telephone']) < 3) || (utf8_strlen($this->request->post['telephone']) > 32)) {
+    	if ((utf8_strlen($this->request->post['telephone']) < 3) || (utf8_strlen($this->request->post['telephone']) > 32)
+         || preg_match("/[^\d-()\ \+]/", $this->request->post['telephone'])) {
       		$this->error['telephone'] = $this->language->get('error_telephone');
     	}
 		
