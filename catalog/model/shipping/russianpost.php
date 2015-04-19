@@ -13,9 +13,10 @@ class ModelShippingRussianPost extends Model {
 			$status = false;
 		}
 		
+        $weight = $this->cart->getWeight();
 		$method_data = array();
 	
-		if ($status) {
+		if ($status && $weight < 20) {
 			$quote_data = array();
 			
       		$quote_data['russianpost'] = array(
@@ -23,7 +24,7 @@ class ModelShippingRussianPost extends Model {
         		'title'        => $this->language->get('text_description'),
         		'cost'         => 0.00,
         		'tax_class_id' => 0,
-				'text'         => $this->currency->format(0.00)
+				'text'         => "от " . $this->currency->format(350.00)
       		);
 
       		$method_data = array(
