@@ -1,6 +1,6 @@
 <?php
 // Heading
-$_['heading_title']      = 'Оплата с карты Сбербанка';
+$_['heading_title']      = 'Оплата на яндекс-деньги';
 
 // Text 
 $_['text_payment']       = 'Оплата';
