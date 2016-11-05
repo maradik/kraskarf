@@ -2,13 +2,18 @@
 class ControllerModuleCart extends Controller {
 	public function index() {
 		$this->language->load('module/cart');
-		
+
+        if (isset($this->request->get['update'])) {
+            $key = (int)$this->request->get['update'];
+            $qty = (int)$this->request->get['qty'];
+            $this->cart->update($key, $qty > 1 ? $qty : 1);
+        }
+		  
       	if (isset($this->request->get['remove'])) {
           	$this->cart->remove($this->request->get['remove']);
-			
 			unset($this->session->data['vouchers'][$this->request->get['remove']]);
-      	}	
-			
+      	}
+
 		// Totals
 		$this->load->model('setting/extension');
 		
