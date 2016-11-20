@@ -20,43 +20,19 @@ $(document).ready(function() {
     });
     
 	/* Search */
-	$('.button-search').bind('click', function() {
-		url = $('base').attr('href') + 'index.php?route=product/search';
-				 
-		var search = $('input[name=\'search\']').attr('value');
-		
-		if (search) {
-			url += '&search=' + encodeURIComponent(search);
-		}
-		
-		location = url;
-	});
-	
-	$('#header input[name=\'search\']').bind('keydown', function(e) {
-		if (e.keyCode == 13) {
-			url = $('base').attr('href') + 'index.php?route=product/search';
-			 
-			var search = $('input[name=\'search\']').attr('value');
-			
-			if (search) {
-				url += '&search=' + encodeURIComponent(search);
-			}
-			
-			location = url;
-		}
-	});
 	
 	/* Ajax Cart */
-	$('#cart > .heading a').live('click', function() {
-		$('#cart').addClass('active');
-		
-		$('#cart').load('index.php?route=module/cart #cart > *');
-		
-		$('#cart').live('mouseleave', function() {
-			$(this).removeClass('active');
-		});
+	$('#cart > a > .heading').live('hover', function() {
+        if ($('#cart').hasClass('active') == false) {      
+            $('#cart').addClass('active');
+            $('#cart').load('index.php?route=module/cart #cart > *');
+        }
 	});
-	
+    
+    $('#cart').live('mouseleave', function() {
+        $(this).removeClass('active');
+    });
+   
 	/* Mega Menu */
 	$('#menu ul > li > a + div').each(function(index, element) {
 		// IE6 & IE7 Fixes

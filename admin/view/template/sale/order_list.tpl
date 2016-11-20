@@ -94,9 +94,7 @@
               <td class="right"><?php echo $order['total']; ?></td>
               <td class="left"><?php echo $order['date_added']; ?></td>
               <td class="left"><?php echo $order['date_modified']; ?></td>
-              <td class="right"><?php foreach ($order['action'] as $action) { ?>
-                [ <a href="<?php echo $action['href']; ?>"><?php echo $action['text']; ?></a> ]
-                <?php } ?></td>
+              <td class="right"><?php foreach ($order['action'] as $action) { ?>[&nbsp;<a href="<?php echo $action['href']; ?>"><?php echo $action['text']; ?></a>&nbsp;]&nbsp;<?php } ?></td>
             </tr>
             <?php } ?>
             <?php } else { ?>
