@@ -28,18 +28,29 @@
         <?php } ?>
         <span><?php echo $text_model; ?></span> <?php echo $model; ?><br />
         <?php if (!empty($weight)): ?>
-        <span><?php echo $text_weight; ?></span> <?php echo $weight. '&nbsp;' . $weight_class; ?><br />
+        <span><?php echo $text_weight; ?></span> <span id="originalWeightContainer"><?php echo $weight. '&nbsp;' . $weight_class; ?></span><br />
         <?php endif; ?>
         <?php if ($reward) { ?>
         <span><?php echo $text_reward; ?></span> <?php echo $reward; ?><br />
         <?php } ?>
         <span><?php echo $text_stock; ?></span> <?php echo $stock; ?></div>
-      <?php if ($price) { ?>
+      <?php if ($price) { 
+	  $price_exploded = explode(' ',$price); 
+	  $special_price_exploded = explode(' ',$special); ?>
+	  
+	  <input type="hidden" id="originalPriceValue" value="<?php echo $price_exploded[0]; ?>" />
+	  <input type="hidden" id="currencyValue" value="<?php echo '&nbsp;'.$price_exploded[1]; ?>" />
+	  
+	  <input type="hidden" id="originalWeightValue" value="<?php echo $weight; ?>" />
+	  <input type="hidden" id="weightClassValue" value="<?php echo '&nbsp;' . $weight_class; ?>" />
+
+	  <input type="hidden" id="discountedPriceValue" value="<?php echo $special_price_exploded[0]; ?>" />
+
       <div class="price"><?php echo $text_price; ?>
         <?php if (!$special) { ?>
-        <?php echo $price; ?>
+        <span id="originalPriceContainer"><?php echo $price; ?></span>
         <?php } else { ?>
-        <span class="price-old"><?php echo $price; ?></span> <span class="price-new"><?php echo $special; ?></span>
+        <span class="price-old" id="oldPrice"><?php echo $price; ?></span> <span class="price-new" id="newPrice"><?php echo $special; ?></span>
         <?php } ?>
         <br />
         <?php if ($tax) { ?>
@@ -86,12 +97,17 @@
           <span class="required">*</span>
           <?php } ?>
           <b><?php echo $option['name']; ?>:</b><br />
-          <select name="option[<?php echo $option['product_option_id']; ?>]">
+          <select name="option[<?php echo $option['product_option_id']; ?>]" id="optionSelect" onchange="liveOptionChange();">
             <option value=""><?php echo $text_select; ?></option>
             <?php foreach ($option['option_value'] as $option_value) { ?>
-            <option value="<?php echo $option_value['product_option_value_id']; ?>"><?php echo $option_value['name']; ?>
-            <?php if ($option_value['price']) { ?>
-            (<?php echo $option_value['price_prefix']; ?><?php echo $option_value['price']; ?>)
+            <option value="<?php echo $option_value['product_option_value_id']; ?>" data-price-prefix="<?php echo $option_value['price_prefix']; ?>" data-price="<?php echo $option_value['price_value']; ?>" data-weight="<?php echo $option_value['weight']; ?>" data-weight-prefix="<?php echo $option_value['weight_prefix']; ?>"><?php echo $option_value['name']; ?>
+            <?php if ($option_value['price']) { 
+			if ($option_value['price_prefix'] == "+") {
+				$overall_price = number_format(floatval($price_exploded[0]) + floatval($option_value['price_value']), 2, '.', '')."&nbsp".$price_exploded[1];
+			} elseif ($option_value['price_prefix'] == "-") {
+				$overall_price = number_format(floatval($price_exploded[0]) - floatval($option_value['price_value']), 2, '.', '')."&nbsp".$price_exploded[1];
+			} ?>
+            (<?php // echo $option_value['price_prefix']; ?><?php echo $overall_price; // echo $option_value['price']; ?>)
             <?php } ?>
             </option>
             <?php } ?>
@@ -612,4 +628,9 @@ $(document).ready(function() {
 	$('.time').timepicker({timeFormat: 'h:m'});
 });
 //--></script> 
+<style>
+.product-info .description span#originalWeightContainer {
+	color: #4D4D4D;
+}
+</style>
 <?php echo $footer; ?>

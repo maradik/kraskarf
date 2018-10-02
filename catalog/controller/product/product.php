@@ -363,8 +363,16 @@ class ControllerProductProduct extends Controller {
 						if (!$option_value['subtract'] || ($option_value['quantity'] > 0)) {
 							if ((($this->config->get('config_customer_price') && $this->customer->isLogged()) || !$this->config->get('config_customer_price')) && (float)$option_value['price']) {
 								$price = $this->currency->format($this->tax->calculate($option_value['price'], $product_info['tax_class_id'], $this->config->get('config_tax')));
+								$price_value = $option_value['price'];
 							} else {
 								$price = false;
+								$price_value = false;
+							}
+							
+							if ((float)$option_value['weight']) {
+								$weight = ($option_value['weight'] + 0);
+							} else {
+								$weight = false;
 							}
 							
 							$option_value_data[] = array(
@@ -373,7 +381,11 @@ class ControllerProductProduct extends Controller {
 								'name'                    => $option_value['name'],
 								'image'                   => $this->model_tool_image->resize($option_value['image'], 50, 50),
 								'price'                   => $price,
-								'price_prefix'            => $option_value['price_prefix']
+								'price_prefix'            => $option_value['price_prefix'],
+								'weight'                  => $weight,
+								'weight_prefix'           => $option_value['weight_prefix'],
+								'price_value'             => $price_value,
+								'weight_value'            => ($option_value['weight'] + 0)								
 							);
 						}
 					}

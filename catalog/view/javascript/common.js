@@ -80,7 +80,65 @@ $(document).ready(function() {
 			$(this).remove();
 		});
 	});	
+	
 });
+
+// live option change
+function liveOptionChange() {
+		
+	var originalPriceValue = $('#originalPriceValue').val();
+	var currencyValue = $('#currencyValue').val();
+	var originalWeightValue = $('#originalWeightValue').val();
+	var weightClassValue = $('#weightClassValue').val();
+		
+	var discountedPriceValue = $('#discountedPriceValue').val();
+		
+	var option_price = $('#optionSelect option:selected').attr('data-price');
+	var option_price_prefix = $('#optionSelect option:selected').attr('data-price-prefix');
+	var option_weight = $('#optionSelect option:selected').attr('data-weight');
+	var option_weight_prefix = $('#optionSelect option:selected').attr('data-weight-prefix');
+		
+	if (option_price_prefix == '+' && option_price > 0) {
+		var newPrice = (parseFloat(originalPriceValue)+parseFloat(option_price)).toFixed(2);
+		var newPriceFormatted = newPrice+currencyValue;
+	} else if (option_price_prefix == '-' && option_price > 0) {
+		var newPrice = parseFloat(originalPriceValue)-parseFloat(option_price);
+		var newPriceFormatted = newPrice.toFixed(2)+currencyValue;
+	} /*else if (option_price_prefix == '=' && option_price > 0) {
+		var newPrice = parseFloat(option_price);
+		var newPriceFormatted = newPrice.toFixed(2)+currencyValue;
+	}*/ else {
+		var newPrice = originalPriceValue;
+		var newPriceFormatted = newPrice+currencyValue;
+	}
+		
+	if (option_weight_prefix == '+' && option_weight) {
+		var newWeight = parseFloat(originalWeightValue)+parseFloat(option_weight);
+		var newWeightFormatted = newWeight+weightClassValue;
+	} else if (option_weight_prefix == '-' && option_weight) {
+		var newWeight = parseFloat(originalWeightValue)-parseFloat(option_weight);
+		var newWeightFormatted = newWeight+weightClassValue;
+	} /*else if (option_weight_prefix == '=' && option_weight) {
+		var newWeight = parseFloat(option_weight);
+		var newWeightFormatted = newWeight+weightClassValue;
+	}*/ else {
+		var newWeight = originalWeightValue;
+		var newWeightFormatted = newWeight+weightClassValue;
+	}
+		
+	if (discountedPriceValue) {
+		$('#oldPrice').text(newPriceFormatted);
+		var discountRate = parseFloat(originalPriceValue)-parseFloat(discountedPriceValue);
+		var newDiscountedPrice = parseFloat(newPrice)-parseFloat(discountRate);
+		var newDiscountedPriceFormatted = newDiscountedPrice.toFixed(2)+currencyValue;
+		$('#newPrice').text(newDiscountedPriceFormatted);
+	} else {
+		$('#originalPriceContainer').text(newPriceFormatted);
+	}
+	$('#originalWeightContainer').text(newWeightFormatted);
+		
+		
+}
 
 function getURLVar(key) {
 	var value = [];
