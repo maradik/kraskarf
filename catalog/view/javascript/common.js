@@ -99,25 +99,25 @@ function liveOptionChange() {
 	var option_weight_prefix = $('#optionSelect option:selected').attr('data-weight-prefix');
 		
 	if (option_price_prefix == '+' && option_price > 0) {
-		var newPrice = (parseFloat(originalPriceValue)+parseFloat(option_price)).toFixed(2);
-		var newPriceFormatted = newPrice+currencyValue;
+		var newPrice = parseFloat(originalPriceValue)+parseFloat(option_price);
+		var newPriceFormatted = numberFormat(newPrice.toFixed(2))+currencyValue;
 	} else if (option_price_prefix == '-' && option_price > 0) {
 		var newPrice = parseFloat(originalPriceValue)-parseFloat(option_price);
-		var newPriceFormatted = newPrice.toFixed(2)+currencyValue;
+		var newPriceFormatted = numberFormat(newPrice.toFixed(2))+currencyValue;
 	} /*else if (option_price_prefix == '=' && option_price > 0) {
 		var newPrice = parseFloat(option_price);
 		var newPriceFormatted = newPrice.toFixed(2)+currencyValue;
 	}*/ else {
 		var newPrice = originalPriceValue;
-		var newPriceFormatted = newPrice+currencyValue;
+		var newPriceFormatted = numberFormat(newPrice)+currencyValue;
 	}
 		
 	if (option_weight_prefix == '+' && option_weight) {
 		var newWeight = parseFloat(originalWeightValue)+parseFloat(option_weight);
-		var newWeightFormatted = newWeight+weightClassValue;
+		var newWeightFormatted = (Math.round(newWeight*100)/100)+weightClassValue;
 	} else if (option_weight_prefix == '-' && option_weight) {
 		var newWeight = parseFloat(originalWeightValue)-parseFloat(option_weight);
-		var newWeightFormatted = newWeight+weightClassValue;
+		var newWeightFormatted = (Math.round(newWeight*100)/100)+weightClassValue;
 	} /*else if (option_weight_prefix == '=' && option_weight) {
 		var newWeight = parseFloat(option_weight);
 		var newWeightFormatted = newWeight+weightClassValue;
@@ -138,6 +138,23 @@ function liveOptionChange() {
 	$('#originalWeightContainer').text(newWeightFormatted);
 		
 		
+}
+
+function strip(number) {
+    return (parseFloat(number).toPrecision(12));
+}
+
+function numberFormat(nStr)
+{
+    nStr += '';
+    x = nStr.split('.');
+    x1 = x[0];
+    x2 = x.length > 1 ? '.' + x[1] : '';
+    var rgx = /(\d+)(\d{3})/;
+    while (rgx.test(x1)) {
+        x1 = x1.replace(rgx, '$1' + ' ' + '$2');
+    }
+    return x1 + x2;
 }
 
 function getURLVar(key) {

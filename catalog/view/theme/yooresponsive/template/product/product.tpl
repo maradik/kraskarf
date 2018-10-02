@@ -38,7 +38,7 @@
 	  $price_exploded = explode(' ',$price); 
 	  $special_price_exploded = explode(' ',$special); ?>
 	  
-	  <input type="hidden" id="originalPriceValue" value="<?php echo $price_exploded[0]; ?>" />
+	  <input type="hidden" id="originalPriceValue" value="<?php echo $price_value; ?>" />
 	  <input type="hidden" id="currencyValue" value="<?php echo '&nbsp;'.$price_exploded[1]; ?>" />
 	  
 	  <input type="hidden" id="originalWeightValue" value="<?php echo $weight; ?>" />
@@ -60,12 +60,50 @@
         <span class="reward"><small><?php echo $text_points; ?> <?php echo $points; ?></small></span><br />
         <?php } ?>
         <?php if ($discounts) { ?>
-        <br />
-        <div class="discount">
+		  <table class="discounts_table">
+		  <thead><tr>
+			<td>Кол-во</td>
+			<?php foreach ($options as $option) : ?>
+				<?php foreach ($option['option_value'] as $option_value) { 
+					$name_exploded = explode('(',$option_value['name']); 
+					$final_option_name = preg_replace("/[^0-9,]/", "", $name_exploded[0] );	?>
+					<td><?php echo $final_option_name; ?></td>
+				<?php } ?>
+			<?php endforeach; ?>
+		  </tr></thead>
+		  <tbody>
+			<tr>
+				<td>от 1</td>
+				<?php foreach ($options as $option) : ?>
+					<?php foreach ($option['option_value'] as $option_value) { 
+					if ($option_value['price_prefix'] == "+") {
+						$overall_price = number_format(floatval($price_value) + floatval($option_value['price_value']), 2, '.', ' ')."&nbsp".$price_exploded[1];
+					} elseif ($option_value['price_prefix'] == "-") {
+						$overall_price = number_format(floatval($price_value) - floatval($option_value['price_value']), 2, '.', ' ')."&nbsp".$price_exploded[1];
+					} ?>
+						<td><?php echo $overall_price; ?></td>
+					<?php } ?>
+				<?php endforeach; ?>
+			</tr>
           <?php foreach ($discounts as $discount) { ?>
-          <?php echo sprintf($text_discount, $discount['quantity'], $discount['price']); ?><br />
+			<tr>
+				<td>от <?php echo $discount['quantity']; ?></td>
+				<?php foreach ($options as $option) : 
+				$discount_sum = floatval($price_value) - floatval(preg_replace("/[^0-9.]/", "", $discount['price'] ));?>
+					<?php foreach ($option['option_value'] as $option_value) { 
+					if ($option_value['price_prefix'] == "+") {
+						$overall_price = number_format(floatval($price_value) + floatval($option_value['price_value'] - floatval($discount_sum)), 2, '.', ' ')."&nbsp".$price_exploded[1];
+					} elseif ($option_value['price_prefix'] == "-") {
+						$overall_price = number_format(floatval($price_value) - floatval($option_value['price_value'] - floatval($discount_sum)), 2, '.', ' ')."&nbsp".$price_exploded[1];
+					} ?>
+						<td><?php echo $overall_price; ?></td>
+					<?php } ?>
+				<?php endforeach; ?>
+			</tr>
+			<?php // echo sprintf($text_discount, $discount['quantity'], $discount['price']); ?><br />
           <?php } ?>
-        </div>
+		  </tbody>
+		  </table>
         <?php } ?>
       </div>
       <?php } ?>
@@ -103,9 +141,9 @@
             <option value="<?php echo $option_value['product_option_value_id']; ?>" data-price-prefix="<?php echo $option_value['price_prefix']; ?>" data-price="<?php echo $option_value['price_value']; ?>" data-weight="<?php echo $option_value['weight']; ?>" data-weight-prefix="<?php echo $option_value['weight_prefix']; ?>"><?php echo $option_value['name']; ?>
             <?php if ($option_value['price']) { 
 			if ($option_value['price_prefix'] == "+") {
-				$overall_price = number_format(floatval($price_exploded[0]) + floatval($option_value['price_value']), 2, '.', '')."&nbsp".$price_exploded[1];
+				$overall_price = number_format(floatval($price_value) + floatval($option_value['price_value']), 2, '.', ' ')."&nbsp".$price_exploded[1];
 			} elseif ($option_value['price_prefix'] == "-") {
-				$overall_price = number_format(floatval($price_exploded[0]) - floatval($option_value['price_value']), 2, '.', '')."&nbsp".$price_exploded[1];
+				$overall_price = number_format(floatval($price_value) - floatval($option_value['price_value']), 2, '.', ' ')."&nbsp".$price_exploded[1];
 			} ?>
             (<?php // echo $option_value['price_prefix']; ?><?php echo $overall_price; // echo $option_value['price']; ?>)
             <?php } ?>
@@ -632,5 +670,9 @@ $(document).ready(function() {
 .product-info .description span#originalWeightContainer {
 	color: #4D4D4D;
 }
+.discounts_table {width: 100%;}
+.discounts_table td {padding: 5px; text-align: center;}
+.discounts_table thead tr td, .discounts_table tbody tr:nth-child(2n) td {background: #E7E7E7;}
+.discounts_table tbody tr td {font-weight: normal;}
 </style>
 <?php echo $footer; ?>
